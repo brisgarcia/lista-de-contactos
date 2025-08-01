@@ -25,11 +25,18 @@ export class Principal extends LitElement {
     this.contactos = [
       {
         id: 1,
-        nombre: "Griselda Garcia",
+        nombre: "Tyler Joseph",
         telefono: "8611355029",
-        email: "Griselda@hsm.com",
-        foto: "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=100&q=80"
-      }
+        email: "ty@hsm.com",
+        foto: "https://i.pinimg.com/736x/e4/8e/69/e48e69f9d5dadc3e1b86b16317338a4b.jpg",
+      },
+      {
+        id: 2,
+        nombre: "Josh Dun",
+        telefono: "8611355030",
+        email: "jd@hsm.com",
+        foto: "https://pbs.twimg.com/profile_images/1807464676391055360/GBTeU0fE_400x400.jpg",
+      },
     ];
   }
 
@@ -90,34 +97,50 @@ export class Principal extends LitElement {
     return html`
       <div class="principal-container">
         <div class="agregar-contacto">
-          <sl-button @click=${this.abrirForm} variant="primary" pill size="medium">
+          <sl-button
+            @click=${this.abrirForm}
+            variant="primary"
+            pill
+            size="medium"
+          >
             Nuevo contacto
             <sl-icon name="plus-circle" slot="prefix"></sl-icon>
           </sl-button>
         </div>
 
-        ${this.contactos.map(contacto => html`
-          <sl-details>
-            <div slot="summary" class="summary-content">
-              <sl-avatar shape="circle" image=${contacto.foto} label=${contacto.nombre}></sl-avatar>
-              <span>${contacto.nombre}</span>
-            </div>
-            <sl-icon name="plus-square" slot="expand-icon"></sl-icon>
-            <sl-icon name="minus-square" slot="collapse-icon"></sl-icon>
+        ${this.contactos.map(
+          (contacto) => html`
+            <sl-details @sl-show=${this.cerrarOtros}>
+              <div slot="summary" class="summary-content">
+                <sl-avatar
+                  shape="circle"
+                  image=${contacto.foto}
+                  label=${contacto.nombre}
+                ></sl-avatar>
+                <span>${contacto.nombre}</span>
+              </div>
+              <sl-icon name="plus-square" slot="expand-icon"></sl-icon>
+              <sl-icon name="minus-square" slot="collapse-icon"></sl-icon>
 
-            <div class="detalles">
-              <ul>
-                <li><span>Numero de telefono: </span>${contacto.telefono}</li>
-                <li><span>Email: </span>${contacto.email}</li>
-                <li class="acciones">
-                  <sl-button @click=${() => this.abrirDelete(contacto.id)} circle variant="danger" size="small">
-                    <sl-icon name="trash"></sl-icon>
-                  </sl-button>
-                </li>
-              </ul>
-            </div>
-          </sl-details>
-        `)}
+              <div class="detalles">
+                <ul>
+                  <li><span>Numero de telefono: </span>${contacto.telefono}</li>
+                  <li><span>Email: </span>${contacto.email}</li>
+                  <li class="acciones">
+                    <sl-button
+                      @click=${() => this.abrirDelete(contacto.nombre)}
+                      circle
+                      variant="danger"
+                      size="small"
+                    >
+                      <sl-icon name="trash"></sl-icon>
+                    </sl-button>
+                  </li>
+                </ul>
+              </div>
+            </sl-details>
+          `
+        )}
       </div>
     `;
   }
@@ -131,19 +154,26 @@ export class Principal extends LitElement {
     document.body.appendChild(popup);
   }
 
-  abrirDelete(id) {
-  const contacto = this.contactos.find(c => c.id === id);
-  const popup = document.createElement("popup-del");
-  popup.userId = id;
-  popup.nombre = contacto.nombre;
-  popup.addEventListener("delete-contact", (e) => {
-    this.contactos = this.contactos.filter(c => c.id !== e.detail.id);
-  });
+  abrirDelete(nombre) {
+    const contacto = this.contactos.find((c) => c.nombre === nombre);
+    const popup = document.createElement("popup-del");
+    popup.nombre = contacto.nombre;
+    popup.foto = contacto.foto;
+    popup.addEventListener("delete-contact", (e) => {
+      this.contactos = this.contactos.filter((c) => c.nombre !== e.detail.nombre);
+    });
 
-  popup.addEventListener("close", () => popup.remove());
-  document.body.appendChild(popup);
-}
+    popup.addEventListener("close", () => popup.remove());
+    document.body.appendChild(popup);
+  }
 
+  cerrarOtros(e) {
+    this.renderRoot.querySelectorAll("sl-details").forEach((det) => {
+      if (det !== e.target) {
+        det.hide();
+      }
+    });
+  }
 }
 
 customElements.define("principal-ej", Principal);

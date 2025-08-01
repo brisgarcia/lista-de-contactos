@@ -3,11 +3,8 @@ import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/compone
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/input/input.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/divider/divider.js";
 
-
 export class PopupForm extends LitElement {
-  static properties = {
-
-  };
+  static properties = {};
 
   constructor() {
     super();
@@ -73,28 +70,41 @@ export class PopupForm extends LitElement {
           <h2>Agregar nuevo contacto</h2>
           <sl-divider></sl-divider>
           <p>Nombre:</p>
-          <sl-input id="nombre"
+          <sl-input
+            id="nombre"
             type="text"
             placeholder="Ingrese el nombre de contacto"
           ></sl-input>
           <p>Numero de telefono:</p>
-          <sl-input id="telefono"
+          <sl-input
+            id="telefono"
             type="text"
             placeholder="Ingrese el numero de telefono"
           ></sl-input>
           <p>Email:</p>
-          <sl-input id="email" type="text" placeholder="Ingrese el email" ></sl-input>
+          <sl-input
+            id="email"
+            type="text"
+            placeholder="Ingrese el email"
+          ></sl-input>
           <p>Foto de contacto:</p>
-          <sl-input id="foto"
+          <sl-input
+            id="foto"
             type="text"
             placeholder="Ingrese la url de la foto"
           ></sl-input>
-            <p class="error"></p>
+          <p class="error"></p>
           <div class="actions">
-            <sl-button  size="medium" pill variant="primary" @click=${this.cerrarPopup}
+            <sl-button pill variant="success" @click=${this.agregarContacto}
+              >Agregar</sl-button
+            >
+            <sl-button
+              size="medium"
+              pill
+              variant="primary"
+              @click=${this.cerrarPopup}
               >Cancelar</sl-button
             >
-            <sl-button pill variant="success" @click=${this.agregarContacto}>Agregar</sl-button>
           </div>
         </div>
       </div>
@@ -105,12 +115,12 @@ export class PopupForm extends LitElement {
     const error = this.renderRoot.querySelector(".error");
     error.textContent = "";
     const nombre = this.renderRoot.querySelector("#nombre").value;
-    const telefono = this.renderRoot.querySelector("#telefono").value; 
+    const telefono = this.renderRoot.querySelector("#telefono").value;
     const email = this.renderRoot.querySelector("#email").value;
     const foto = this.renderRoot.querySelector("#foto").value;
 
     if (!nombre || !telefono || !email || !foto) {
-        error.textContent = "Por favor, complete todos los campos.";
+      error.textContent = "Por favor, complete todos los campos.";
       return;
     }
     if (!/^\d+$/.test(telefono)) {
@@ -125,7 +135,6 @@ export class PopupForm extends LitElement {
       error.textContent = "La URL de la foto no es valida.";
       return;
     }
-    
 
     this.dispatchEvent(
       new CustomEvent("add-contact", {
@@ -142,6 +151,5 @@ export class PopupForm extends LitElement {
       new CustomEvent("close", { bubbles: true, composed: true })
     );
   }
-
 }
 customElements.define("popup-form", PopupForm);

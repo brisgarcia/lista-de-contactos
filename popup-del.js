@@ -2,6 +2,7 @@ import { LitElement, html, css } from "lit";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/button/button.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/icon/icon.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/input/input.js";
+import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/avatar/avatar.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/divider/divider.js";
 import { registerIconLibrary } from "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/utilities/icon-library.js";
 
@@ -16,13 +17,12 @@ registerIconLibrary("default", {
 
 export class PopupDel extends LitElement {
   static properties = {
-    userId: { type: Number },
     nombre: { type: String },
+    foto: { type: String },
   };
 
   constructor() {
     super();
-    this.userId = null;
   }
   static styles = css`
     .popup {
@@ -60,6 +60,7 @@ export class PopupDel extends LitElement {
     sl-input {
       width: 400px;
       margin: 10px 0;
+      --sl-input-height-medium: 60px;
     }
     h3 {
       text-align: center;
@@ -82,9 +83,17 @@ export class PopupDel extends LitElement {
           <h3>¿Esta seguro de eliminar al contacto?</h3>
           <sl-divider></sl-divider>
           <sl-input type="text" .value=${this.nombre} disabled>
-            <sl-icon name="user" slot="prefix"></sl-icon
-          ></sl-input>
+            <sl-avatar
+              slot="prefix"
+              shape="circle"
+              .image=${this.foto}
+            ></sl-avatar>
+            ></sl-input
+          >
           <div class="actions">
+            <sl-button pill variant="danger" @click=${this.delContact}
+              >Eliminar</sl-button
+            >
             <sl-button
               size="medium"
               pill
@@ -92,7 +101,6 @@ export class PopupDel extends LitElement {
               @click=${this.closePopup}
               >Cancelar</sl-button
             >
-            <sl-button pill variant="danger" @click=${this.delContact}>Eliminar</sl-button>
           </div>
         </div>
       </div>
@@ -104,9 +112,7 @@ export class PopupDel extends LitElement {
       new CustomEvent("delete-contact", {
         bubbles: true,
         composed: true,
-        detail: { id: this.userId,
-            nombre: this.nombre
-         },
+        detail: { nombre: this.nombre },
       })
     );
     this.closePopup();
