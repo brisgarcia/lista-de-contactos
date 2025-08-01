@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module" src="header.js"></script>
+    <script type="module" src="menu.js"></script>
+    <script type="module" src="principal.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+      body {
+        margin: 0;
+        font-family: "Nunito", sans-serif;
+        background-color: #fff9ef;
+      }
+
+      .content {
+        display: flex;
+        height: calc(100vh - 60px); 
+      }
+
+      menu-ej {
+        width: 180px;
+     ;
+      }
+
+      principal-ej {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <header-ej></header-ej>
+    <div class="content">
+      <menu-ej></menu-ej>
+      <principal-ej></principal-ej>
+    </div>
+  </body>
+</html>
