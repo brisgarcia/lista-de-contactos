@@ -70,26 +70,22 @@ export class PopupForm extends LitElement {
         <div class="popup-content">
           <h2>Agregar nuevo contacto</h2>
           <sl-divider></sl-divider>
-          <p>Nombre:</p>
-          <sl-input
+          <sl-input label="Nombre:"
             id="nombre"
             type="text"
             placeholder="Escriba el nombre de contacto"
           ></sl-input>
-          <p>Numero de telefono:</p>
-          <sl-input
+          <sl-input label="Numero de telefono:"
             id="telefono"
             type="text"
             placeholder="Escriba el numero de telefono"
           ></sl-input>
-          <p>Email:</p>
-          <sl-input
+          <sl-input label ="Email:"
             id="email"
             type="text"
             placeholder="Escriba el email"
           ></sl-input>
-          <p>Foto de contacto:</p>
-          <sl-input
+          <sl-input label="Foto de contacto:"
             id="foto"
             type="text"
             placeholder="Escriba la url de la foto"
