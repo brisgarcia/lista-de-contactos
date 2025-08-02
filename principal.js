@@ -125,8 +125,8 @@ export class Principal extends LitElement {
 
               <div class="detalles">
                 <ul>
-                  <li><span>Numero de telefono: </span>${contacto.telefono}</li>
-                  <li><span>Email: </span>${contacto.email}</li>
+                  <li><span><sl-icon name="phone"></sl-icon> Numero de telefono: </span>${contacto.telefono}</li>
+                  <li><span><sl-icon name="at-sign"></sl-icon> Email: </span>${contacto.email}</li>
 
                   <li class="acciones">
                     <sl-button

@@ -74,21 +74,26 @@ export class PopupForm extends LitElement {
             id="nombre"
             type="text"
             placeholder="Escriba el nombre de contacto"
+            clearable
           ></sl-input>
           <sl-input label="Numero de telefono:"
             id="telefono"
             type="text"
             placeholder="Escriba el numero de telefono"
+            clearable
           ></sl-input>
           <sl-input label ="Email:"
             id="email"
-            type="text"
+            type="email"
             placeholder="Escriba el email"
+            clearable
           ></sl-input>
           <sl-input label="Foto de contacto:"
             id="foto"
             type="text"
             placeholder="Escriba la url de la foto"
+            help-text="Deje en blanco para usar una foto por defecto"
+            clearable
           ></sl-input>
           <p class="error"></p>
           <div class="actions">
