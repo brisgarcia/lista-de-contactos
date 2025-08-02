@@ -13,7 +13,7 @@ export class Menu extends LitElement {
       flex-direction: column;
       background-color: #f8f9fa;
       width: 150px;
-      height: 100vh;
+      height: 100%;
       padding: 10px;
       font-family: "Nunito", sans-serif;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2)

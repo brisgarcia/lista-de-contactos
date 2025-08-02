@@ -18,16 +18,28 @@
 
       .content {
         display: flex;
-        height: calc(100vh - 60px); 
+        height: calc(100vh - 60px);
       }
 
       menu-ej {
         width: 180px;
-     ;
       }
 
       principal-ej {
         flex: 1;
+      }
+      header-ej {
+        height: 60px; 
+      }
+      .content {
+        flex: 1; 
+        display: flex;
+        overflow: hidden;
+      }
+
+      principal-ej {
+        flex: 1;
+        overflow-y: auto
       }
     </style>
   </head>

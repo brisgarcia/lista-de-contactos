@@ -62,6 +62,7 @@ export class PopupForm extends LitElement {
 
     .error {
       color: red;
+      text-align: center;
   `;
   render() {
     return html`
@@ -73,25 +74,25 @@ export class PopupForm extends LitElement {
           <sl-input
             id="nombre"
             type="text"
-            placeholder="Ingrese el nombre de contacto"
+            placeholder="Escriba el nombre de contacto"
           ></sl-input>
           <p>Numero de telefono:</p>
           <sl-input
             id="telefono"
             type="text"
-            placeholder="Ingrese el numero de telefono"
+            placeholder="Escriba el numero de telefono"
           ></sl-input>
           <p>Email:</p>
           <sl-input
             id="email"
             type="text"
-            placeholder="Ingrese el email"
+            placeholder="Escriba el email"
           ></sl-input>
           <p>Foto de contacto:</p>
           <sl-input
             id="foto"
             type="text"
-            placeholder="Ingrese la url de la foto"
+            placeholder="Escriba la url de la foto"
           ></sl-input>
           <p class="error"></p>
           <div class="actions">

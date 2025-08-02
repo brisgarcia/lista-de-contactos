@@ -1,7 +1,8 @@
 import { LitElement, html, css } from "lit";
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/avatar/avatar.js';
+import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/avatar/avatar.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/icon/icon.js";
 import { registerIconLibrary } from "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/utilities/icon-library.js";
+import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/tooltip/tooltip.js";
 
 registerIconLibrary("default", {
   resolver: (name) =>
@@ -13,8 +14,7 @@ registerIconLibrary("default", {
 });
 
 export class Header extends LitElement {
-  static properties = {
-  };
+  static properties = {};
 
   constructor() {
     super();
@@ -32,8 +32,8 @@ export class Header extends LitElement {
     }
 
     .logo {
-        display: flex;
-        align-items: center;
+      display: flex;
+      align-items: center;
     }
 
     h1 {
@@ -53,20 +53,25 @@ export class Header extends LitElement {
     nav a:hover {
       color: #ffdd57;
     }
+
   `;
   render() {
     return html`
-     <header>
+      <header>
         <div class="logo">
-            <sl-icon name="book-open" style="font-size:30px"></sl-icon>
-           <h1>Lista de contactos</h1>
+          <sl-icon name="book-open" style="font-size:30px"></sl-icon>
+          <h1>Lista de contactos</h1>
         </div>
         <nav>
-          <sl-avatar  shape="circle" image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-          label="Teodoro"></sl-avatar>
+          <sl-tooltip content="Gatito">
+            <sl-avatar
+              shape="circle"
+              image="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+            ></sl-avatar>
+          </sl-tooltip>
         </nav>
       </header>
-      `;
+    `;
   }
 }
 customElements.define("header-ej", Header);

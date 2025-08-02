@@ -2,6 +2,7 @@ import { LitElement, html, css } from "lit";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/details/details.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/icon/icon.js";
 import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/button/button.js";
+import "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/tooltip/tooltip.js";
 import "./popup-form.js";
 import "./popup-del.js";
 import { registerIconLibrary } from "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/utilities/icon-library.js";
@@ -126,6 +127,7 @@ export class Principal extends LitElement {
                 <ul>
                   <li><span>Numero de telefono: </span>${contacto.telefono}</li>
                   <li><span>Email: </span>${contacto.email}</li>
+
                   <li class="acciones">
                     <sl-button
                       @click=${() => this.abrirDelete(contacto.nombre)}
@@ -160,7 +162,9 @@ export class Principal extends LitElement {
     popup.nombre = contacto.nombre;
     popup.foto = contacto.foto;
     popup.addEventListener("delete-contact", (e) => {
-      this.contactos = this.contactos.filter((c) => c.nombre !== e.detail.nombre);
+      this.contactos = this.contactos.filter(
+        (c) => c.nombre !== e.detail.nombre
+      );
     });
 
     popup.addEventListener("close", () => popup.remove());
