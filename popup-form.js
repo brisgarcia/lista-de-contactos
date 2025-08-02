@@ -117,9 +117,9 @@ export class PopupForm extends LitElement {
     const nombre = this.renderRoot.querySelector("#nombre").value;
     const telefono = this.renderRoot.querySelector("#telefono").value;
     const email = this.renderRoot.querySelector("#email").value;
-    const foto = this.renderRoot.querySelector("#foto").value;
+    let foto = this.renderRoot.querySelector("#foto").value;
 
-    if (!nombre || !telefono || !email || !foto) {
+    if (!nombre || !telefono || !email) {
       error.textContent = "Por favor, complete todos los campos.";
       return;
     }
@@ -131,9 +131,8 @@ export class PopupForm extends LitElement {
       error.textContent = "El email no es valido.";
       return;
     }
-    if (!/^https?:\/\/.+\.(jpg|jpeg|png|gif)$/.test(foto)) {
-      error.textContent = "La URL de la foto no es valida.";
-      return;
+    if(foto == null || foto == undefined || foto == ""){
+      foto = "https://imgs.search.brave.com/qIaQ3_01kFL8d7RqlF3FGMWMa-1UE2SAVmrShgWPPK0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS50ZW5vci5jb20v/eFMwbmhjREYxaUFB/QUFBTS9tb25rZXkt/bW9ua2V5cy5naWY.jpeg";
     }
 
     this.dispatchEvent(
